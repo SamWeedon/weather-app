@@ -6,22 +6,21 @@ const fetchWeatherInfo = async function (location) {
   );
 
   const weatherInfoObject = await response.json();
-  console.log(weatherInfoObject);
-  /*
-  processedWeatherObject.temp_f = weatherInfoObject.current.temp_f;
-  processedWeatherObject.temp_c = weatherInfoObject.current.temp_c;
+  //console.log(weatherInfoObject);
 
-  console.log(processedWeatherObject);
-  */
+  processedWeatherObject.forecastdays = weatherInfoObject.forecast.forecastday;
+  processedWeatherObject.location = weatherInfoObject.location;
+  //console.log(processedWeatherObject);
   return processedWeatherObject;
 };
 
-fetchWeatherInfo("New York City");
-/*
-const processWeatherInfo = function (weatherInfoObject) {
-  const tempF = weatherInfoObject.current.temp_f;
-  console.log(tempF);
-};
-*/
+//fetchWeatherInfo("Baltimore");
 
-//processWeatherInfo(fetchWeatherInfo("New York City"));
+const searchBar = document.getElementById("search-bar");
+const searchButton = document.getElementById("search-button");
+
+searchButton.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const weatherObject = await fetchWeatherInfo(searchBar.value);
+  console.log(weatherObject);
+});
