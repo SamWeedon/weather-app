@@ -6,7 +6,7 @@ const fetchWeatherInfo = async function (location) {
   );
 
   const weatherInfoObject = await response.json();
-  //console.log(weatherInfoObject);
+  console.log(weatherInfoObject);
 
   processedWeatherObject.forecastdays = weatherInfoObject.forecast.forecastday;
   processedWeatherObject.location = weatherInfoObject.location;
