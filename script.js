@@ -36,8 +36,21 @@ const afterTomorrowLow = document.getElementById("day-after-tomorrow-low");
 const afterTomorrowHigh = document.getElementById("day-after-tomorrow-high");
 
 let weatherObject;
-searchButton.addEventListener("click", async (e) => {
-  e.preventDefault();
+searchButton.addEventListener("click", (e) => loadInfo(e));
+
+for (let i = 0; i < hourButtons.length; i++) {
+  hourButtons[i].addEventListener("click", (e) => {
+    selectedTime.textContent = e.target.id;
+    selectedConditions.src =
+      weatherObject.forecastdays[0].hour[i].condition.icon;
+    selectedTemperature.textContent = `${weatherObject.forecastdays[0].hour[i].temp_f} F`;
+  });
+}
+
+const loadInfo = async function (event) {
+  if (event) {
+    event.preventDefault();
+  }
   weatherObject = await fetchWeatherInfo(searchBar.value);
   console.log(weatherObject);
   selectedTime.textContent = "Now";
@@ -53,13 +66,7 @@ searchButton.addEventListener("click", async (e) => {
   afterTomorrowCondition.src = weatherObject.forecastdays[2].day.condition.icon;
   afterTomorrowLow.textContent = `Low: ${weatherObject.forecastdays[2].day.mintemp_f} F`;
   afterTomorrowHigh.textContent = `High: ${weatherObject.forecastdays[2].day.maxtemp_f} F`;
-});
+};
 
-for (let i = 0; i < hourButtons.length; i++) {
-  hourButtons[i].addEventListener("click", (e) => {
-    selectedTime.textContent = e.target.id;
-    selectedConditions.src =
-      weatherObject.forecastdays[0].hour[i].condition.icon;
-    selectedTemperature.textContent = `${weatherObject.forecastdays[0].hour[i].temp_f} F`;
-  });
-}
+searchBar.value = "baltimore";
+loadInfo();

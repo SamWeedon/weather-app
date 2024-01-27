@@ -1,0 +1,25 @@
+#search-bar {
+  padding: 0.25rem;
+}
+
+#search-button {
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+}
+
+.hour {
+  width: 60px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 0.65rem;
+}
+
+.after-day-container {
+  margin: 1rem;
+}
+
+#after-days-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
