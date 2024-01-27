@@ -1,3 +1,21 @@
+* {
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 100vw;
+}
+
 #search-bar {
   padding: 0.25rem;
 }
@@ -7,6 +25,22 @@
   padding: 0.25rem;
 }
 
+#selected-weather-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 40px;
+  margin-top: 5px;
+}
+
+#hour-container {
+  display: grid;
+  grid-template-columns: 60px 60px;
+  grid-template-rows: repeat(12, auto);
+}
+
 .hour {
   width: 60px;
   border: 1px solid #ccc;
@@ -14,12 +48,21 @@
   font-size: 0.65rem;
 }
 
-.after-day-container {
-  margin: 1rem;
+.hour:hover {
+  font-size: 0.75rem;
+}
+
+#selected-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #after-days-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  border: 1px solid #ccc;
+  padding: 40px;
 }
