@@ -18,9 +18,18 @@ const fetchWeatherInfo = async function (location) {
 
 const searchBar = document.getElementById("search-bar");
 const searchButton = document.getElementById("search-button");
+const selectedWeather = document.getElementById("selected-weather");
+const hourButtons = document.querySelectorAll(".hour");
 
+let weatherObject;
 searchButton.addEventListener("click", async (e) => {
   e.preventDefault();
-  const weatherObject = await fetchWeatherInfo(searchBar.value);
+  weatherObject = await fetchWeatherInfo(searchBar.value);
   console.log(weatherObject);
 });
+
+for (let i = 0; i < hourButtons.length; i++) {
+  hourButtons[i].addEventListener("click", () => {
+    selectedWeather.textContent = weatherObject.forecastdays[0].hour[i].temp_f;
+  });
+}
