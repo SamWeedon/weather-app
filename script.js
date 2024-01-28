@@ -57,12 +57,23 @@ const loadInfo = async function (event) {
   selectedConditions.src = weatherObject.current.condition.icon;
   selectedTemperature.textContent = `${weatherObject.current.temp_f} F`;
 
-  tomorrowDate.textContent = weatherObject.forecastdays[1].date;
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const tomorrow = new Date(`${weatherObject.forecastdays[1].date}T00:00`);
+  tomorrowDate.textContent = weekdays[tomorrow.getDay()];
   tomorrowCondition.src = weatherObject.forecastdays[1].day.condition.icon;
   tomorrowLow.textContent = `Low: ${weatherObject.forecastdays[1].day.mintemp_f} F`;
   tomorrowHigh.textContent = `High: ${weatherObject.forecastdays[1].day.maxtemp_f} F`;
 
-  afterTomorrowDate.textContent = weatherObject.forecastdays[2].date;
+  const afterTomorrow = new Date(`${weatherObject.forecastdays[2].date}T00:00`);
+  afterTomorrowDate.textContent = weekdays[afterTomorrow.getDay()];
   afterTomorrowCondition.src = weatherObject.forecastdays[2].day.condition.icon;
   afterTomorrowLow.textContent = `Low: ${weatherObject.forecastdays[2].day.mintemp_f} F`;
   afterTomorrowHigh.textContent = `High: ${weatherObject.forecastdays[2].day.maxtemp_f} F`;
