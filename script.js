@@ -6,16 +6,12 @@ const fetchWeatherInfo = async function (location) {
   );
 
   const weatherInfoObject = await response.json();
-  console.log(weatherInfoObject);
 
   processedWeatherObject.forecastdays = weatherInfoObject.forecast.forecastday;
   processedWeatherObject.location = weatherInfoObject.location;
   processedWeatherObject.current = weatherInfoObject.current;
-  //console.log(processedWeatherObject);
   return processedWeatherObject;
 };
-
-//fetchWeatherInfo("Baltimore");
 
 const searchBar = document.getElementById("search-bar");
 const searchButton = document.getElementById("search-button");
@@ -52,7 +48,11 @@ const loadInfo = async function (event) {
     event.preventDefault();
   }
   weatherObject = await fetchWeatherInfo(searchBar.value);
-  console.log(weatherObject);
+  searchBar.value = `${weatherObject.location.name}, ${
+    weatherObject.location.region
+      ? weatherObject.location.region
+      : weatherObject.location.country
+  }`;
   selectedTime.textContent = "Now";
   selectedConditions.src = weatherObject.current.condition.icon;
   selectedTemperature.textContent = `${weatherObject.current.temp_f} F`;
@@ -79,5 +79,5 @@ const loadInfo = async function (event) {
   afterTomorrowHigh.textContent = `High: ${weatherObject.forecastdays[2].day.maxtemp_f} F`;
 };
 
-searchBar.value = "baltimore";
+searchBar.value = "Baltimore";
 loadInfo();
