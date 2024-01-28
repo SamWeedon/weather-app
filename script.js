@@ -39,7 +39,7 @@ let weatherObject;
 searchButton.addEventListener("click", (e) => loadInfo(e));
 
 for (let i = 0; i < hourButtons.length; i++) {
-  hourButtons[i].addEventListener("click", (e) => {
+  hourButtons[i].addEventListener("mouseover", (e) => {
     selectedTime.textContent = e.target.id;
     selectedConditions.src =
       weatherObject.forecastdays[0].hour[i].condition.icon;
