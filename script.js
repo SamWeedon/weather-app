@@ -30,6 +30,7 @@ const afterTomorrowCondition = document.getElementById(
 );
 const afterTomorrowLow = document.getElementById("day-after-tomorrow-low");
 const afterTomorrowHigh = document.getElementById("day-after-tomorrow-high");
+const loading = document.getElementById("loading");
 
 const getWeekdayName = function (weekdayIndex) {
   /*
@@ -61,7 +62,9 @@ const loadWeather = async function (event) {
   }
 
   // get weather info object from API
+  document.body.style.opacity = "20%";
   weatherObject = await fetchWeatherInfo(searchBar.value);
+  document.body.style.opacity = "100%";
 
   // Standardize and specify searchbar value
   searchBar.value = `${weatherObject.location.name}, ${
